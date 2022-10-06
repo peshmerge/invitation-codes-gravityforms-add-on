@@ -13,12 +13,9 @@ invitation codes in combination with GravityForms.
 
 == Description ==
 
-This plugin is created to enable WordPress site owners to specify a custom 
-invitation code to be used with Gravity Forms. Once an invitation code is 
-specified on a form, the user can't submit that form until that invitation code
-is entered in the field during the form submission.
-This plugin can be combined with the Gravity Forms User Registration Add-On to
-make sure that only people with a correct invitation code can register on your
+This plugin is created to enable WordPress site owners to specify a custom invitation code to be used with Gravity Forms.
+Once an invitation code is specified on a form, the user can't submit that form until that invitation code is entered in the field during the form submission.
+This plugin can be combined with the Gravity Forms User Registration Add-On to make sure that only people with a correct invitation code can register on your
 website. 
 
 == Installation ==
