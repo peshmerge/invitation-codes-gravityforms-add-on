@@ -5,10 +5,10 @@ if (!class_exists('GFForms') || !defined('ABSPATH'))
 	die();
 }
 
-class GF_Regex_Textfield extends GF_Field_Text
+class GF_Field_Invitation_Code extends GF_Field_Text
 {
 
-	public $type = 'regex_textfield';
+	public $type = 'invitation_code';
 
 	/**
 	 * Returns the field's form editor icon.
@@ -21,15 +21,15 @@ class GF_Regex_Textfield extends GF_Field_Text
 	 */
 	public function get_form_editor_field_icon()
 	{
-		return gf_regex_textfield()->get_base_url() .
-		'/img/gf_regex_textfield_icon.svg';
+		return gf_invitation_code()->get_base_url() .
+		'/img/gf_invitation_code_icon.svg';
 	}
 
 	public function get_form_editor_field_title()
 	{
 		return esc_attr__(
-		 'Regex Textfield',
-		 GFRegexTextfield::GF_Regex_Textfield_TEXTDOMAIN
+		 'Invitation Code',
+		 GFInvitationCode::GF_INVITATION_CODES_TEXTDOMAIN
 		);
 	}
 	/**
@@ -42,8 +42,8 @@ class GF_Regex_Textfield extends GF_Field_Text
 	public function get_form_editor_field_description()
 	{
 		return esc_attr__(
-		 'Allows users to add a text field which supports Regular expressions to restrict user input ',
-		 GFRegexTextfield::GF_Regex_Textfield_TEXTDOMAIN
+		 'Allows users to define an invitation code field ',
+		  GFInvitationCode::GF_INVITATION_CODES_TEXTDOMAIN
 		 );
 	}
 	/**
@@ -74,50 +74,31 @@ class GF_Regex_Textfield extends GF_Field_Text
 		   'css_class_setting',
 		   'description_setting',
 		   'error_message_setting',
-		   'regex_textfield_setting',
+		   'invitation_code_setting',
 		   'label_placement_setting',
 		   'label_setting',
 		   'prepopulate_field_setting',
 		   'size_setting',
 		   'visibility_setting',
-		   'rules_setting', // required-checkbox
-
 		);
 	}
 
 	public function validate($value, $form)
 	{
-		if (!empty($this->errorMessage))
-		{
-			$this->validation_message = $this->errorMessage;
-		}
-		else
-		{
-			$this->validation_message = esc_attr__(
-			'Your input must comply with the defined regular expression',
-			GFRegexTextfield::GF_Regex_Textfield_TEXTDOMAIN
-			);
-		}
-
-
-		/**
-		 * Is required, the we need to check if the user has configured a regex string
-		 * If there's no regex string given in the backend, then validation failed
-		 */
-		if ($this->isRequired && empty($this->regex_field))
+		if ($value !== $this->invitationCode)
 		{
 			$this->failed_validation = true;
-			$this->validation_message = esc_attr__(
-			 'Contact the website admins and notify them about unconfigured regex field',
-			 GFRegexTextfield::GF_Regex_Textfield_TEXTDOMAIN
-			);
-			return;
-		}
-
-		// If there's a regex string defined, then check if the input comply 
-		if (!empty($value) && !preg_match('/^' . $this->regex_field . '$/', $value, $output_array))
-		{
-			$this->failed_validation = true;
+			if (!empty($this->errorMessage))
+			{
+				$this->validation_message = $this->errorMessage;
+			}
+			else
+			{
+				$this->validation_message = esc_attr__(
+				 'Please provide a valid invitation code',
+				 GFInvitationCode::GF_INVITATION_CODES_TEXTDOMAIN
+				);
+			}
 		}
 	}
 
@@ -137,24 +118,24 @@ class GF_Regex_Textfield extends GF_Field_Text
 	{
 		// set the default field label
 		$script = sprintf(
-		 "function SetDefaultValues_regext_textfield(field) {
+		 "function SetDefaultValues_invitation_code(field) {
 			field.label = '%s';}",
 		  $this->get_form_editor_field_title()) . PHP_EOL;
 		// initialize the fields custom settings
 		$script .= "jQuery(document).bind('gform_load_field_settings',
 		 function (event, field, form) {" .
-		   "var regex_field = field.regex_field == undefined ? '' :
-		   field.regex_field;" .
-		   "jQuery('#field_regex_textfield').val(regex_field);" .
-		  "jQuery('#field_regex_textfield').on('input propertychange',
-		   function(){SetFieldProperty('regex_field', this.value);	});" .
-		  "jQuery('#field_regex_textfield').val(
-			field.regex_field == undefined || 
-			field.regex_field === false ? '' : field.regex_field);" .
+		   "var invitationCode = field.invitationCode == undefined ? '' :
+		   field.invitationCode;" .
+		   "jQuery('#field_invitation_code').val(invitationCode);" .
+		  "jQuery('#field_invitation_code').on('input propertychange',
+		   function(){SetFieldProperty('invitationCode', this.value);	});" .
+		  "jQuery('#field_invitation_code').val(
+			field.invitationCode == undefined || 
+			field.invitationCode === false ? '' : field.invitationCode);" .
 		  "});" . PHP_EOL;
 		return $script;
 	}
 
 }
 
-GF_Fields::register(new GF_Regex_Textfield());
+GF_Fields::register(new GF_Field_Invitation_Code());
