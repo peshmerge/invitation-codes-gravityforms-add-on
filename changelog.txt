@@ -1,2 +1,2 @@
-### 1.0 | 2022-10-04
-- First version of Gravity Forms invitation codes.
+### 1.0 | 2022-11-09
+- First version of Regex Textfield: Gravityforms Add-on.

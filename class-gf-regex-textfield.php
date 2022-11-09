@@ -6,39 +6,39 @@ if (!defined('ABSPATH'))
 
 GFForms::include_addon_framework();
 
-class GFInvitationCode extends GFAddOn
+class GFRegexTextfield extends GFAddOn
 {
 
-	public const GF_INVITATION_CODES_TEXTDOMAIN =
-	'gravity-forms-invitation-codes';
+	public const GF_Regex_Textfield_TEXTDOMAIN =
+	'gravity-forms-regex-textfield';
 
 	/**
 	 * Class instance
 	 *
-	 * @var GFInvitationCode|null $_instance If available, contains an instance
+	 * @var GFRegexTextfield|null $_instance If available, contains an instance
 	 *                                       of this class.
 	 */
 	private static $_instance = null;
-	protected $_version = GF_INVITATION_CODE_VERSION;
+	protected $_version = GF_Regex_Textfield_VERSION;
 	protected $_min_gravityforms_version = '2.5';
-	protected $_slug = 'invitation-codes-gravityforms';
+	protected $_slug = 'regex-textfield-gravityforms';
 	protected $_path =
-	'invitation-codes-gravityforms-add-on/class-gf-invitation-code-bootstrap.php';
+	'regex-textfield-gravityforms-add-on/class-gf-regex-textfield-bootstrap.php';
 	protected $_full_path = __FILE__;
 	protected $_url = 'https://peshmerge.io';
-	protected $_title = 'Invitation Codes for GravityForms ';
-	protected $_short_title = 'GF Invitation Codes';
+	protected $_title = 'Regex textfield for GravityForms ';
+	protected $_short_title = 'GF Regex Textfield';
 
 	/**
 	 * Get an instance of this class.
 	 *
-	 * @return GFInvitationCode
+	 * @return GFRegexTextfield
 	 */
 	public static function get_instance()
 	{
 		if (self::$_instance == null)
 		{
-			self::$_instance = new GFInvitationCode();
+			self::$_instance = new GFRegexTextfield();
 		}
 
 		return self::$_instance;
@@ -53,7 +53,7 @@ class GFInvitationCode extends GFAddOn
 
 		if ($this->is_gravityforms_supported() && class_exists('GF_Field'))
 		{
-			require_once 'includes/class-gf-field-invitation-code.php';
+			require_once 'includes/class-gf-regex-textfield.php';
 
 		}
 	}
@@ -80,35 +80,35 @@ class GFInvitationCode extends GFAddOn
 		if ($position == 0)
 		{
 ?>
-<li class="invitation_code_setting field_setting">
-	<label for="field_invitation_code" class="section_label">
+<li class="regex_textfield_setting field_setting">
+	<label for="field_regex_textfield" class="section_label">
 		<?php esc_html_e(
-			'Invitation Code',
-			self::GF_INVITATION_CODES_TEXTDOMAIN
+			'Regular Expression',
+			self::GF_Regex_Textfield_TEXTDOMAIN
 			);
 ?>
-		<?php gform_tooltip('field_invitation_code'); ?>
+		<?php gform_tooltip('field_regex_textfield'); ?>
 	</label>
-	<input type="text" id="field_invitation_code" />
+	<input type="text" id="field_regex_textfield" />
 </li>
 <?php
 		}
 	}
 	public function tooltips($tooltips)
 	{
-		$invitationcodes_tooltips = [
-		 'field_invitation_code' =>
+		$regextextfield_tooltips = [
+		 'field_regex_textfield' =>
 		 '<h6>' .
 		 esc_html__(
-		  'Invitation Code',
-		  self::GF_INVITATION_CODES_TEXTDOMAIN
+		  'Regular Expression',
+		  self::GF_Regex_Textfield_TEXTDOMAIN
 		  ) .
 		  '</h6>' .
 		  esc_html__(
-		  'Enter the Invitation Code you want to be used for the current form',
-		   self::GF_INVITATION_CODES_TEXTDOMAIN
+		  'Enter the regex string you want to be used for the current form',
+		   self::GF_Regex_Textfield_TEXTDOMAIN
 		  )
 		  ];
-		return array_merge($tooltips, $invitationcodes_tooltips);
+		return array_merge($tooltips, $regextextfield_tooltips);
 	}
 }
