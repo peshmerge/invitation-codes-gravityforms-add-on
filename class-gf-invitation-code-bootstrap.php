@@ -8,11 +8,11 @@ if (!defined('ABSPATH'))
  * Plugin Name: Invitation Codes: Gravityforms Add-on
  * Plugin URI: https://github.com/peshmerge/invitation-codes-gravityforms-add-on
  * Description: A simple Gravity Form add-on to enable WordPress users to specify invitation codes on Gravity forms. 
- * Version: 1.0
+ * Version: 1.1
  * Author: Peshmerge Morad 
  * Author URI: https://peshmerge.io
  */
-const GF_INVITATION_CODE_VERSION = '1.0';
+const GF_INVITATION_CODE_VERSION = '1.1';
 add_action('gform_loaded', ['GF_Invitation_Code_Bootstrap', 'load'], 5);
 /**
  * Class GF_Invitation_Code_Bootstrap

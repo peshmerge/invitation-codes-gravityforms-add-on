@@ -74,7 +74,7 @@ class GF_Field_Invitation_Code extends GF_Field_Text
 		   'css_class_setting',
 		   'description_setting',
 		   'error_message_setting',
-		   'invitation_code_setting',
+		   'invitation_code_settings',
 		   'label_placement_setting',
 		   'label_setting',
 		   'prepopulate_field_setting',
@@ -85,7 +85,16 @@ class GF_Field_Invitation_Code extends GF_Field_Text
 
 	public function validate($value, $form)
 	{
-		if ($value !== $this->invitationCode)
+		// if invitationCodeCaseSensitive then, don't do anything
+		if ($this->invitationCodeCaseSensitive) {
+			$invitation_codes = explode(',',$this->invitationCode);
+		} else {
+			// if not invitationCodeCaseSensitive convert everything to lowercase
+			$invitation_codes = array_map('strtolower',explode(',',$this->invitationCode));
+			$value = strtolower($value);
+		}
+		
+		if (is_array($invitation_codes) && !in_array($value ,$invitation_codes))
 		{
 			$this->failed_validation = true;
 			if (!empty($this->errorMessage))
@@ -116,26 +125,54 @@ class GF_Field_Invitation_Code extends GF_Field_Text
 	 */
 	public function get_form_editor_inline_script_on_page_render()
 	{
-		// set the default field label
-		$script = sprintf(
-		 "function SetDefaultValues_invitation_code(field) {
-			field.label = '%s';}",
-		  $this->get_form_editor_field_title()) . PHP_EOL;
-		// initialize the fields custom settings
-		$script .= "jQuery(document).bind('gform_load_field_settings',
-		 function (event, field, form) {" .
-		   "var invitationCode = field.invitationCode == undefined ? '' :
-		   field.invitationCode;" .
-		   "jQuery('#field_invitation_code').val(invitationCode);" .
-		  "jQuery('#field_invitation_code').on('input propertychange',
-		   function(){SetFieldProperty('invitationCode', this.value);	});" .
-		  "jQuery('#field_invitation_code').val(
-			field.invitationCode == undefined || 
-			field.invitationCode === false ? '' : field.invitationCode);" .
-		  "});" . PHP_EOL;
-		return $script;
-	}
+		$field_label = $this->get_form_editor_field_title();
+		?>
+		<script type="text/javascript">
+			// set the default field label
+			function SetDefaultValues_invitation_code(field) {
+				field.label = "<?php echo $field_label; ?> ";
+			}
+			
+			// initialize the fields General setting settings
+			jQuery(document).bind('gform_load_field_settings',function (event, field, form) {
+				// Change the value of the textfield to be from the JS var invitationCode
+				jQuery('#field_invitation_code').val(field.invitationCode == undefined || field.invitationCode === false ? '' : field.invitationCode);
+				// If the value of the text field is changed, change the JS var invitationCode accordingly 
+				jQuery('#field_invitation_code').on('input propertychange', function(){
+					SetFieldProperty('invitationCode', this.value);
+				});
+				
+				// Change the value of checkbox based on the value of JS var invitationCodeCaseSensitive
+				jQuery("#invitation_code_case").prop("checked", field.invitationCodeCaseSensitive ? true : false);
 
+			});
+		</script> 
+	<?php
+	}
+		/**
+	 * Returns the scripts to be included with the form init scripts on the front-end.
+	 *
+	 * @param array $form The Form Object currently being processed.
+	 *
+	 * @return string
+	 */
+	public function get_form_inline_script_on_page_render( $form ) {
+		/**
+		 * Get the value of the http parameter we want to populate our custom invitation code field with
+		 * to do that we need to get the value of the field Parameter Name from Advanced tab of the invitation code field
+		 * Apparently the value can be obtained by using $this->inputName.
+		 */
+		if ($this->allowsPrepopulate){
+			$http_parameter = $this->inputName;
+			$field_id = "#input_{$form['id']}_{$this->id}";
+			// For some weird reason the values of invitation code field are not populated automatically, thus this hack.
+			return "jQuery(document).ready(function(){ 
+				jQuery(\"{$field_id}\").val(new URLSearchParams(window.location.search).get('$http_parameter'));
+				jQuery(\"{$field_id}\").attr('readonly',true);
+			});";	
+		}
+	}
 }
+
 
 GF_Fields::register(new GF_Field_Invitation_Code());

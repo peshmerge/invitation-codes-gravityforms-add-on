@@ -3,8 +3,8 @@
 Contributors: peshmerge
 Tags: gravityforms, gravity form, invitation codes
 Requires at least: 5.5
-Tested up to: 6.0.2
-Stable tag: 1.0
+Tested up to: 6.2
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,7 @@ invitation code is submitted.
 = How do I use this plugin? =
 
 This plugin requires you to have Gravity Forms installed (min version 2.5).
+The plugin is tested with Gravity Forms 2.7.3
 
 = How to uninstall the plugin? =
 
@@ -41,10 +42,17 @@ Simply deactivate and delete the plugin.
 
 == Screenshots ==
 1. General tab of the Invitation Code field in the form editor.
-2. General tab of the Invitation Code field with a filled in Inviation Code.
+2. General tab of the Invitation Code field with a filled in Inviation Code, and checked option regarding case sensitive invitation codes.
 3. Appearance tab of the Invitation Code field with a custom validation message.
 4. Form preview with the the Inviation Code field with an incorrect input.
 
 == Changelog ==
 = 1.0 =
 * Plugin released.
+
+= 1.1 =
+* New: Invitation code can be now a list of comma separated codes instead of single code.
+* New: User can make invitation codes input case sensitive, default is case insensitive.
+* Fixed: Invitation code field can now be populated automatically just like other GF fields. 
+* Fixed: Rewritten the Javascript part.
+

@@ -1,2 +1,8 @@
 ### 1.0 | 2022-10-04
 - First version of Gravity Forms invitation codes.
+
+### 1.1 | 2023-04-10
+- New: Invitation code can be now a list of comma separated codes instead of single code.
+- New: User can make invitation codes input case sensitive, default is case insensitive.
+- Fiex: Fixed: Invitation code field can now be populated automatically just like other GF fields.
+- Fixed: Rewritten the Javascript part.

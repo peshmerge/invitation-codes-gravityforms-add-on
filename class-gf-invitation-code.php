@@ -80,16 +80,19 @@ class GFInvitationCode extends GFAddOn
 		if ($position == 0)
 		{
 ?>
-<li class="invitation_code_setting field_setting">
+<li class="invitation_code_settings field_setting">
 	<label for="field_invitation_code" class="section_label">
-		<?php esc_html_e(
-			'Invitation Code',
-			self::GF_INVITATION_CODES_TEXTDOMAIN
-			);
-?>
+		<?php esc_html_e('Invitation Code', self::GF_INVITATION_CODES_TEXTDOMAIN);?>
 		<?php gform_tooltip('field_invitation_code'); ?>
 	</label>
 	<input type="text" id="field_invitation_code" />
+</li>
+	<li class="invitation_code_settings field_setting">
+	<input type="checkbox" id="invitation_code_case" onclick="SetFieldProperty('invitationCodeCaseSensitive', this.checked);"/>
+	<label for="invitation_code_case" class="section_label">
+			<?php esc_html_e('Case sensitive invitation code', self::GF_INVITATION_CODES_TEXTDOMAIN);?>
+			<?php gform_tooltip('invitation_code_case'); ?>
+	</label>
 </li>
 <?php
 		}
@@ -97,18 +100,14 @@ class GFInvitationCode extends GFAddOn
 	public function tooltips($tooltips)
 	{
 		$invitationcodes_tooltips = [
-		 'field_invitation_code' =>
-		 '<h6>' .
-		 esc_html__(
-		  'Invitation Code',
-		  self::GF_INVITATION_CODES_TEXTDOMAIN
-		  ) .
-		  '</h6>' .
-		  esc_html__(
-		  'Enter the Invitation Code you want to be used for the current form',
-		   self::GF_INVITATION_CODES_TEXTDOMAIN
-		  )
-		  ];
+		 'field_invitation_code' => 
+		 '<h6>' . esc_html__('Invitation Code', self::GF_INVITATION_CODES_TEXTDOMAIN) .'</h6>' 
+		 .esc_html__('Enter the Invitation Code(s) you want to be used for the current form. You can either enter singel code or a comma-separated list of invitation codes. Max 200 codes',self::GF_INVITATION_CODES_TEXTDOMAIN)
+		,
+		'invitation_code_case' => 
+		'<h6>' . esc_html__('Invitation code sensitivy', self::GF_INVITATION_CODES_TEXTDOMAIN) .'</h6>' 
+		.esc_html__('Specify if you want to make the field case sensitive. By default, it\'s case insensitive ',self::GF_INVITATION_CODES_TEXTDOMAIN)
+		]; 
 		return array_merge($tooltips, $invitationcodes_tooltips);
 	}
 }
