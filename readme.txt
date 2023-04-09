@@ -51,8 +51,8 @@ Simply deactivate and delete the plugin.
 * Plugin released.
 
 = 1.1 =
-* New: Invitation code can be now a list of comma separated codes instead of single code.
-* New: User can make invitation codes input case sensitive, default is case insensitive.
-* Fixed: Invitation code field can now be populated automatically just like other GF fields. 
-* Fixed: Rewritten the Javascript part.
+* New: Invitation code can now be a list of comma-separated codes instead of a single code.
+* New: User can make invitation codes input case sensitive; default is case insensitive.
+* Fixed: The invitation code field can now be populated dynamically just like other GF fields.
+* Fixed: The Javascript part is rewritten.
 
