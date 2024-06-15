@@ -22,7 +22,7 @@ website.
 
 1. Upload the plugin folder to your /wp-content/plugins/ folder.
 2. Go to the **Plugins** page and activate the plugin.
-3. Create a GrvityForm form and go the edit page.
+3. Create a GravityForm form and go the edit page.
 4. Within the Advanced Fields section in the editor, select "Invitation Code".
 5. In the General tab of the Field Settings fill in the Invitation Code you want.
 6. In the Appearance tab of the Field Settings, you can specify the 
@@ -42,17 +42,24 @@ Simply deactivate and delete the plugin.
 
 == Screenshots ==
 1. General tab of the Invitation Code field in the form editor.
-2. General tab of the Invitation Code field with a filled in Inviation Code, and checked option regarding case sensitive invitation codes.
+2. General tab of the Invitation Code field with a filled in Invitation Code, and checked option regarding case-sensitive invitation codes.
 3. Appearance tab of the Invitation Code field with a custom validation message.
-4. Form preview with the the Inviation Code field with an incorrect input.
+4. Form preview with the Invitation Code field with an incorrect input.
 
 == Changelog ==
-= 1.0 =
-* Plugin released.
+= 1.2 =
+* New:      The plugin requires now GravityForms to be installed to activated
+* New:      The limit of 200 invitation codes has imposed in the form editor.
+* New:      Placeholder support is added to the field.
+* Fixed:    Corrected typos and did some minor reformatting for the code.
+
 
 = 1.1 =
-* New: Invitation code can now be a list of comma-separated codes instead of a single code.
-* New: User can make invitation codes input case sensitive; default is case insensitive.
-* Fixed: The invitation code field can now be populated dynamically just like other GF fields.
-* Fixed: The Javascript part is rewritten.
+* New:      Invitation code can now be a list of comma-separated codes instead of a single code.
+* New:      User can make invitation codes input case-sensitive; default is case-insensitive.
+* Fixed:    The invitation code field can now be populated dynamically just like other GF fields.
+* Fixed:    The Javascript part is rewritten.
 
+
+= 1.0 =
+* Plugin released.
