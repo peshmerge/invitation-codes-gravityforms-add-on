@@ -9,7 +9,6 @@
  * Author:              Peshmerge Morad
  * Author URI:          https://peshmerge.io
  * Text Domain:         gravity-forms-invitation-codes
- * Requires Plugins:    gravityforms
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
  */
 
