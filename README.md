@@ -1,14 +1,15 @@
 # Invitation Codes: Gravityforms Add-on
 
-– Contributors: peshmerge
-– Tags: gravityforms, gravity form, invitationcodes
+- Contributors: peshmerge
+- Tags: gravityforms, gravity form, invitationcodes
 - Donate link: https://buymeacoffee.com/peshmerge
-– Requires at least: 5.5
-– Tested up to: 6.5.4
-– Stable tag: 1.3
-– Requires PHP: 8.0
-– License: GPLv3 or later
-– License URI: http://www.gnu.org/licenses/gpl-3.0.html
+- Requires at least: 5.5
+- Tested up to: 6.5.4
+- Stable tag: 1.3
+- Requires PHP: 8.0
+- License: GPLv3 or later
+- License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
 A GravityForms addon to enable users to use custom invitation codes in combination with GravityForms. 
 
 ## Description
