@@ -1,3 +1,11 @@
+### 1.4 | 2024-09-12
+* Fixed: 	Changed the invitation codes fields to a text area instead of a simple text field.
+* Fixed: 	Run the Plugin Check (PCP) on the plugin and solved the raised issues
+
+### 1.3 | 2023-06-16
+* Fixed: 	Removed the plugin dependency of GravityForms. WP.org reject the plugin because GF can't be found on WP.org
+
+
 ### 1.2 | 2023-06-15
 - New:  The plugin requires now GravityForms to be installed to activated
 - New:  The limit of 200 invitation codes has imposed in the form editor.

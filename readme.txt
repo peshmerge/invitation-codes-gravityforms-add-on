@@ -4,8 +4,8 @@ Contributors: peshmerge
 Tags: gravityforms, gravity form, invitationcodes
 Donate link: https://buymeacoffee.com/peshmerge
 Requires at least: 5.5
-Tested up to: 6.5.4
-Stable tag: 1.3
+Tested up to: 6.6
+Stable tag: 1.4
 Requires PHP: 8.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -49,8 +49,13 @@ invitation codes.
 
 == Changelog ==
 
+= 1.4 =
+* Fixed: 	Changed the invitation codes fields to a text area instead of a simple text field.
+* Fixed: 	Run the Plugin Check (PCP) on the plugin and solved the raised issues
+
+
 = 1.3 =
-* Fixed: 	Removed the plugin dependency of GravityForms. WP.org reject the plugin because GF cann't be found on WP.org
+* Fixed: 	Removed the plugin dependency of GravityForms. WP.org reject the plugin because GF can't be found on WP.org
 
 
 = 1.2 =

@@ -27,7 +27,7 @@ class GF_Field_Invitation_Code extends GF_Field_Text
     {
         return esc_attr__(
             'Invitation Code',
-            GFInvitationCode::GF_INVITATION_CODES_TEXTDOMAIN
+            'invitation-codes-gravityforms-add-on'
         );
     }
 
@@ -42,7 +42,7 @@ class GF_Field_Invitation_Code extends GF_Field_Text
     {
         return esc_attr__(
             'Allows users to define an invitation code field ',
-            GFInvitationCode::GF_INVITATION_CODES_TEXTDOMAIN
+            'invitation-codes-gravityforms-add-on'
         );
     }
 
@@ -61,8 +61,7 @@ class GF_Field_Invitation_Code extends GF_Field_Text
 
 
     /**
-     * Return the settings which should be available on the field in the
-     * form editor.
+     * Return the settings which should be available on the field in the form editor.
      *
      * @return array
      */
@@ -86,12 +85,13 @@ class GF_Field_Invitation_Code extends GF_Field_Text
 
     public function validate($value, $form): void
     {
-        // if invitationCodeCaseSensitive then, don't do anything
-        if ($this->invitationCodeCaseSensitive) {
-            $invitation_codes = explode(',', $this->invitationCode);
-        } else {
-            // if not invitationCodeCaseSensitive convert everything to lowercase
-            $invitation_codes = array_map('strtolower', explode(',', $this->invitationCode));
+        $invitation_codes = preg_split('/\r\n|\r|\n/', $this->invitationCode);
+        //Remove whitespaces within the values
+        $invitation_codes = array_map('trim', $invitation_codes);
+
+        // if not invitationCodeCaseSensitive convert everything to lowercase
+        if (!$this->invitationCodeCaseSensitive) {
+            $invitation_codes = array_map('strtolower', $invitation_codes);
             $value = strtolower($value);
         }
 
@@ -102,7 +102,7 @@ class GF_Field_Invitation_Code extends GF_Field_Text
             } else {
                 $this->validation_message = esc_attr__(
                     'Please provide a valid invitation code',
-                    GFInvitationCode::GF_INVITATION_CODES_TEXTDOMAIN
+                    'invitation-codes-gravityforms-add-on'
                 );
             }
         }
@@ -116,8 +116,7 @@ class GF_Field_Invitation_Code extends GF_Field_Text
     }
 
     /**
-     * Returns the scripts to be included for this field type in the
-     * form editor.
+     * Returns the scripts to be included for this field type in the form editor.
      *
      * @return string
      */
@@ -126,7 +125,7 @@ class GF_Field_Invitation_Code extends GF_Field_Text
         $field_label = $this->get_form_editor_field_title();
         $maximum_codes_alert_message = esc_attr__(
             'Only 200 comma-separated codes are allowed!',
-            GFInvitationCode::GF_INVITATION_CODES_TEXTDOMAIN
+            'invitation-codes-gravityforms-add-on'
         );
         return <<<EOT
         // set the default field label

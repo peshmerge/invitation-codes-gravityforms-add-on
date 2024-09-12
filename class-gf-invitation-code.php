@@ -9,7 +9,7 @@ class GFInvitationCode extends GFAddOn
 {
 
     public const GF_INVITATION_CODES_TEXTDOMAIN =
-        'gravity-forms-invitation-codes';
+        'invitation-codes-gravityforms-add-on';
 
     /**
      * Class instance
@@ -57,6 +57,7 @@ class GFInvitationCode extends GFAddOn
         }
     }
 
+
     /**
      * Initialize the admin specific hooks.
      */
@@ -73,17 +74,17 @@ class GFInvitationCode extends GFAddOn
             ?>
             <li class="invitation_code_settings field_setting">
                 <label for="field_invitation_code" class="section_label">
-                    <?php esc_html_e('Invitation Code', self::GF_INVITATION_CODES_TEXTDOMAIN); ?>
+                    <?php esc_html_e('Invitation Code', 'invitation-codes-gravityforms-add-on'); ?>
                     <?php gform_tooltip('field_invitation_code'); ?>
                 </label>
-                <input type="text" id="field_invitation_code"/>
+                <textarea id="field_invitation_code" name="field_invitation_code" rows="100" cols="2"> </textarea>
             </li>
             <li class="invitation_code_settings field_setting">
                 <input type="checkbox" id="invitation_code_case"
                        onclick="SetFieldProperty('invitationCodeCaseSensitive', this.checked);"/>
                 <label for="invitation_code_case" class="section_label">
                     <?php
-                    esc_html_e('Case sensitive invitation code', self::GF_INVITATION_CODES_TEXTDOMAIN);
+                    esc_html_e('Case sensitive invitation code', 'invitation-codes-gravityforms-add-on');
                     ?>
                     <?php
                     gform_tooltip('invitation_code_case');
@@ -98,20 +99,29 @@ class GFInvitationCode extends GFAddOn
     {
         $invitationcodes_tooltips = [
             'field_invitation_code' =>
-                '<h6>' . esc_html__('Invitation Code', self::GF_INVITATION_CODES_TEXTDOMAIN) . '</h6>'
+                '<h6>' . esc_html__('Invitation Code', 'invitation-codes-gravityforms-add-on') . '</h6>'
                 . esc_html__(
                     'Enter the Invitation Code(s) you want to be used for the current form. 
                  You can either enter single code or a comma-separated list of invitation codes. Max 200 codes',
-                    self::GF_INVITATION_CODES_TEXTDOMAIN
+                    'invitation-codes-gravityforms-add-on'
                 )
             ,
+            'invitation_code_type' =>
+                '<h6>' . esc_html__('Invitation Code type', 'invitation-codes-gravityforms-add-on') . '</h6>'
+                . esc_html__(
+                    'Either a basic type where you can specify one or more (up to 200) invitation codes. 
+                    Or an advanced type where you can specify per invitation code how many times it can be used.',
+                    'invitation-codes-gravityforms-add-on'
+                )
+            ,
+
             'invitation_code_case' =>
                 '<h6>' . esc_html__(
                     'Invitation code sensitivity',
-                    self::GF_INVITATION_CODES_TEXTDOMAIN) . '</h6>'
+                    'invitation-codes-gravityforms-add-on') . '</h6>'
                 . esc_html__(
                     'Specify if you want to make the field case sensitive. By default, it\'s case insensitive ',
-                    self::GF_INVITATION_CODES_TEXTDOMAIN
+                    'invitation-codes-gravityforms-add-on'
                 )
         ];
         return array_merge($tooltips, $invitationcodes_tooltips);

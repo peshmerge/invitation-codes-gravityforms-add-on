@@ -3,18 +3,18 @@
  * Plugin Name:         Invitation Codes: Gravityforms Add-on
  * Plugin URI:          https://github.com/peshmerge/invitation-codes-gravityforms-add-on
  * Description:         A simple Gravity Form add-on to enable WordPress users to specify invitation codes on GF forms.
- * Version:             1.3
+ * Version:             1.4
  * Requires at least:   5.3
  * Requires PHP:        7.4
  * Author:              Peshmerge Morad
  * Author URI:          https://peshmerge.io
- * Text Domain:         gravity-forms-invitation-codes
+ * Text Domain:         invitation-codes-gravityforms-add-on
+ * License:             GPLv3 or later
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
  */
 
 // don't load directly
-if (!defined('ABSPATH'))
-{
+if (!defined('ABSPATH')) {
     die();
 }
 
@@ -32,8 +32,7 @@ class GF_Invitation_Code_Bootstrap
 {
     public static function load()
     {
-        if (!method_exists('GFForms', 'include_addon_framework'))
-        {
+        if (!method_exists('GFForms', 'include_addon_framework')) {
             return;
         }
         require_once 'class-gf-invitation-code.php';
